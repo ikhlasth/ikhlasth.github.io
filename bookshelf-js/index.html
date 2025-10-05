@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bookshelf App</title>
+  <link rel="stylesheet" href="styles.css">
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  />
+  <script defer src="main.js"></script>
+</head>
+<body>
+  <header>
+    <h1>Bookshelf App</h1>
+    <form class="search" id="searchBook" data-testid="searchBookForm">
+      <input
+        type="text"
+        placeholder="Cari judul buku"
+        data-testid="searchBookFormTitleInput"
+      />
+      <button type="submit" data-testid="searchBookFormSubmitButton">Cari</button>
+    </form>
+  </header>
+
+
+  <main class="container">
+
+    <!-- Shelves -->
+    <div class="shelves">
+      <section class="shelf" id="incompleteShelf">
+        <h2>Belum Selesai Dibaca</h2>
+        <div id="incompleteBookList" data-testid="incompleteBookList"></div>
+      </section>
+
+      <section class="shelf" id="completeShelf">
+        <h2>Selesai Dibaca</h2>
+        <div id="completeBookList" data-testid="completeBookList"></div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Extended FAB -->
+  <button id="fab" class="extended-fab">
+    <i class="fas fa-plus"></i> Tambah Buku
+  </button>
+
+  <!-- Modal Add Book -->
+  <div id="modal" class="modal hidden">
+    <div class="modal-content">
+      <span id="closeModal" class="close">&times;</span>
+      <form id="bookForm" data-testid="bookForm">
+        <div class="form-group">
+          <label for="bookFormTitle">Judul</label>
+          <input id="bookFormTitle" type="text" required data-testid="bookFormTitleInput">
+        </div>
+        <div class="form-group">
+          <label for="bookFormAuthor">Penulis</label>
+          <input id="bookFormAuthor" type="text" required data-testid="bookFormAuthorInput">
+        </div>
+        <div class="form-group">
+          <label for="bookFormYear">Tahun</label>
+          <input id="bookFormYear" type="number" required data-testid="bookFormYearInput">
+        </div>
+        <div class="form-group checkbox">
+          <label for="bookFormIsComplete">Selesai dibaca</label>
+          <input id="bookFormIsComplete" type="checkbox" data-testid="bookFormIsCompleteCheckbox">
+        </div>
+        <button id="bookFormSubmit" type="submit" data-testid="bookFormSubmitButton">
+          Simpan ke Rak
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Bookshelf App - Ikhlas Taufiqul Hakim</p>
+  </footer>
+</body>
+</html>
