@@ -12,6 +12,10 @@ import:
 	git clone $(REPO); \
 	echo "✅ Clone selesai"; \
 	\
+	# Hapus folder .git biar gak jadi submodule
+	echo "🧹 Hapus .git di folder clone"; \
+	rm -rf $$repo_name/.git; \
+	\
 	temp_folder="$$repo_name-temp"; \
 	mkdir -p $$temp_folder; \
 	\
