@@ -37,3 +37,14 @@ update:
 	git add .
 	git commit -m "$(MSG)"
 	git push
+
+cleanup:
+	@if [ -z "$(dir)" ]; then \
+		echo "❌ Error: Harus pakai dir"; \
+		exit 1; \
+	fi
+	rm -rf $(dir)
+	git rm --cached -r $(dir)
+	git add .
+	git commit -m "cleanup broken import"
+	git push
