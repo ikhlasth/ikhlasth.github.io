@@ -1,1 +1,14 @@
-Hello World
+<ul id="projects"></ul>
+
+<script>
+  fetch('./projects.json')
+    .then(res => res.json())
+    .then(list => {
+      const ul = document.getElementById('projects');
+      list.forEach(name => {
+        const li = document.createElement('li');
+        li.innerHTML = `<a href="./${name}">${name}</a>`;
+        ul.appendChild(li);
+      });
+    });
+</script>

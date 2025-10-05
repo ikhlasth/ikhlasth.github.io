@@ -6,9 +6,7 @@ import:
 		echo "❌ Error: Harus pakai REPO=<url>"; \
 		exit 1; \
 	fi
-
-	@sh -c '\
-	repo_name=$$(basename $(REPO) .git); \
+	@repo_name=$$(basename $(REPO) .git); \
 	echo "➡️  Clone repo $$repo_name..."; \
 	git clone $(REPO); \
 	echo "✅ Clone selesai"; \
@@ -30,7 +28,14 @@ import:
 	echo "✅ Rename $$temp_folder ke $$repo_name"; \
 	mv $$temp_folder $$repo_name; \
 	echo "✅ Import selesai ke folder $$repo_name"; \
-	'
+	\
+	# Update projects.json \
+	if [ ! -f projects.json ]; then \
+		echo "[]" > projects.json; \
+	fi; \
+	tmp=$$(mktemp); \
+	jq --arg proj "$$repo_name" '. + [$$proj] | unique' projects.json > $$tmp && mv $$tmp projects.json; \
+	echo "📝 Ditambahkan ke projects.json: $$repo_name"
 
 MSG ?= update
 update:
