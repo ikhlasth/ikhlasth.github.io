@@ -38,12 +38,17 @@ update:
 	git push
 
 cleanup:
-	@if [ -z "$(dir)" ]; then \
-		echo "❌ Error: Harus pakai dir"; \
+	@dir=$(word 2, $(MAKECMDGOALS)); \
+	if [ -z "$$dir" ]; then \
+		echo "❌ Error: Harus pakai nama folder"; \
 		exit 1; \
-	fi
-	rm -rf $(dir)
-	git rm --cached -r $(dir)
-	git add .
-	git commit -m "cleanup broken import"
+	fi; \
+	echo "🗑 Membersihkan folder $$dir ..."; \
+	rm -rf $$dir; \
+	git rm --cached -r $$dir; \
+	git add .; \
+	git commit -m "cleanup folder $$dir"; \
 	git push
+
+%:
+	@:
